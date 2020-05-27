@@ -14,11 +14,11 @@ STEP_SIZE = 20  # default size of the turtle is 20x20
 snake_head_direction = HEAD_DIRECTION_RIGHT  # start direction
 
 # settings
-update_delay = 0.1  # decrease number for a more difficult game. The snake will then be faster.
+update_delay = 0.15  # decrease number for a more difficult game. The snake will then be faster.
 
 # initializing screen
-SCREEN_WIDTH = 600
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 400
+SCREEN_HEIGHT = 400
 window = turtle.Screen()
 window.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
 window.tracer(0)  # Turns off the screen updates
@@ -31,7 +31,22 @@ snake.shape("square")
 snake.penup()
 
 
-# Functions
+def draw_screen_border():
+    pen = turtle.Turtle()
+    pen.hideturtle()
+    pen.color("black")
+    pen.pensize(4)
+    pen.penup()
+    pen.goto(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+    pen.pendown()
+
+    for i in range(2):
+        pen.right(90)
+        pen.forward(SCREEN_HEIGHT)
+        pen.right(90)
+        pen.forward(SCREEN_WIDTH)
+
+
 def go_up():
     global snake_head_direction
     if snake_head_direction != HEAD_DIRECTION_DOWN:
@@ -99,14 +114,19 @@ def play():
         window.update()
         time.sleep(update_delay)
 
+    print("GAME OVER!")
+
+
+# draw border
+draw_screen_border()
 
 # Keyboard bindings
 window.listen()
-window.onkeypress(go_up, "w")
-window.onkeypress(go_down, "s")
-window.onkeypress(go_left, "a")
-window.onkeypress(go_right, "d")
-window.onkeypress(play, "p")
+window.onkey(go_up, "w")
+window.onkey(go_down, "s")
+window.onkey(go_left, "a")
+window.onkey(go_right, "d")
+window.onkey(play, "p")
 
 # initialize screen with turtle
 window.update()
