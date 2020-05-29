@@ -210,12 +210,13 @@ def place_fruit():
 draw_screen_border()
 
 # Keyboard bindings
-window.listen()
 window.onkey(go_up, "Up")  # or use w,a,s,d instead of the arrow keys
 window.onkey(go_down, "Down")
 window.onkey(go_left, "Left")
 window.onkey(go_right, "Right")
 window.onkey(play, "p")
+
+window.listen()
 
 # initialize screen with turtle
 window.update()

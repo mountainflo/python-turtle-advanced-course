@@ -1,12 +1,51 @@
-# Cheatsheet für Turtle Graphics mit Python
+# Cheatsheet für Turtle Graphics und Python
 
-Vollständige und ausführliche Dokumentation:
+Vollständige und ausführliche Turtle-Dokumentation:
 [https://docs.python.org/3/library/turtle.html](https://docs.python.org/3/library/turtle.html)
+
+Ausführliche deutsche Dokumentation für Python:
+[https://py-tutorial-de.readthedocs.io/de/python-3.3/](https://py-tutorial-de.readthedocs.io/de/python-3.3/)
 
 Für Turtle Graphics musst du auf repl.it ein neues repl erstellen. 
 Als Sprache muss dafür "Python (with Turtle)" ausgewählt werden.
 
-## Getting Started
+
+#### [Turtle Graphics](#turtle-graphics)
+
+* [Neue Turtle erstellen](#neue-turtle-erstellen)
+* [Basisbewegungen](#basisbewegungen)
+* [Geschwindigkeit ändern](#geschwindigkeit-ndern)
+* [Stift verändern](#stift-verndern)
+* [Texte schreiben](#texte-schreiben)
+* [Position abfragen und verändern](#position-abfragen-und-verndern)
+* [Schildkörte ausblenden](#schildkrte-ausblenden)
+* [Screen einrichten](#screen-einrichten)
+* [Screen geöffnet halten](#screen-geffnet-halten)
+* [Steuerung per Tastatur](#steuerung-per-tastatur)
+
+#### [Python](#python)
+
+* [Variablen](#variablen)
+* [Schleifen](#schleifen)
+    * [for-Schleife](#for-schleife)
+    * [while-Schleife](#while-schleife)
+* [Listen](#listen)
+* [Funktionen](#funktionen)
+* [Bedingungen (if-Abfragen)](#bedingungen-if-abfragen)
+* [Operatoren](#operatoren)
+    * [Vergleichsoperatoren](#vergleichsoperatoren)
+    * [Logische Operatoren](#logische-operatoren)
+
+#### [Weitere hilfreiche Python-Module](#weitere-hilfreiche-python-module)
+
+* [random (Zufallszahlen)](#random-zufallszahlen)
+* [time (Zeitbezogene Funktionen)](#time-zeitbezogene-funktionen)
+
+
+
+## Turtle Graphics
+
+### Neue Turtle erstellen
 
 ```python
 import turtle
@@ -16,7 +55,7 @@ tina.color("blue") # black, red, green, yellow, pink ...
 tina.shape("turtle") # "arrow", "turtle", "circle", "square", "classic"
 ```
 
-## Basisbewegungen
+### Basisbewegungen
 
 ```python
 tina.forward(100)
@@ -26,13 +65,13 @@ tina.right(90) # Angabe in Grad
 tina.goto(0,0) # goto(x,y)
 ```
 
-## Geschwindigkeit ändern
+### Geschwindigkeit ändern
 
 ```python
 tina.speed("normal") # "fastest", "fast", "normal", "slow", "slowest"
 ```
 
-## Stift verändern
+### Stift verändern
 
 ```python
 tina.penup() # Stift anheben
@@ -40,62 +79,126 @@ tina.pendown() # Stift senken
 tina.pensize(10) # Dicke des Stifts. Standard=1
 ```
 
-## Kreise zeichnen
-
-```python
-tina.circle(100) # circle(radius) 
-tina.circle(100, 180) # circle(radius, winkel)
-
-tina.begin_fill() # Kreis füllen beginnen
-tina.circle(100)
-tina.end_fill() # Kreis füllen beenden
-```
-
-## Texte schreiben
+### Texte schreiben
 
 ```python
 tina.write("text",align="center") # align kann “left”, “center” oder right” sein
 ```
 
-## Aktuelle Position abfragen
+### Position abfragen und verändern
 
 ```python
 tina.pos() # gibt Vektor mit (x, y) zurück
 tina.xcor() # gibt x Koordinate zurück
-tiny.ycor() # gibt y Koordinate zurück
+tina.ycor() # gibt y Koordinate zurück
+tina.setposition(0, 0) # x, y Position festlegen
 ```
 
-## Variablen
+### Schildkröte ausblenden
+
+```python
+tina.hideturtle()
+```
+
+### Screen einrichten
+
+```python
+window = turtle.Screen()
+
+window.setup(width=400, height=400) # Bildschirmgröße
+window.tracer(0)  # Bildschirm wird nur noch manuell aktualisiert
+window.bgcolor("#B2FF66")  # Hintergrundfarbe
+window.update()  # Bildschirm aktualisieren
+```
+
+### Screen geöffnet halten
+
+```python
+window = turtle.Screen()
+
+# Programm wird nicht beendet, falls dies die letzte Codezeile ist
+window.mainloop() 
+```
+
+### Steuerung per Tastatur
+
+Die Codes für die Pfeiltasten sind: "Up", "Down", "Left" und "Right".
+
+```python
+window = turtle.Screen()
+
+# Funktion wird ausgeführt, sobald die Taste gedrückt wird
+window.onkey(functionName, "Up")
+window.listen() # Ab sofort reagiert das Programm auf Tastatureingaben
+```
+
+## Python
+
+### Variablen
 
 ```python
 square_color = "blue" # Texte stehen in Anführungszeichen
 square_size = 10 # Zahlen stehen nicht in Anführungszeichen
 ```
 
-## for-Schleife
+Globale Variablen in Funktionen verändern.
 
 ```python
-# Mit der Schleife wird ein Quadrat gezeichnet
+foo = 0
+
+def foo_function():
+    global foo
+    foo = foo + 1
+```
+
+### Schleifen
+
+#### for-Schleife
+
+```python
 for count in range(4): # Schleife wird 4 mal ausgeführt
     tina.forward(50)
     tina.left(90)
 ```
 
-## Listen
+#### while-Schleife
 
 ```python
-# Jede der vier Seiten des Quadrats hat eine andere Farbe
-colors = ['red', 'purple', 'blue', 'green']
-for i in range(4):
-    tina.color(colors[i]) 
-    tina.forward(100) 
+counter = 0
+while counter < 4: # Schleife wird 4 mal ausgeführt
+    tina.forward(50)
     tina.left(90)
+    counter = counter + 1  
 ```
 
-## Funktionen
+### Listen
 
 ```python
-# Funktion, die Quadrate mit der Seitenlänge 50 zeichnet
+colors = ['red', 'purple', 'blue', 'green']
+
+# durch alle Element der Liste iterieren
+for color_name in colors:
+    tina.color(color_name) 
+    tina.forward(100) 
+    tina.left(90)
+
+colors.insert(1, 'yellow') # Neues Element an Index 1 einfügen
+# => 'red', 'yellow', 'purple', 'blue', 'green'
+
+del colors[0] # erstes Element ('red') löschen
+
+colors[-1] # auf letztes Element in der Liste zugreifen
+
+# Alle Elemente der Liste vom zweiten bis zum letzen ausgeben
+for color_name in colors[1:]:
+    print(color_name)
+```
+
+### Funktionen
+
+```python
+# Funktion ohne Parameter
+# Die Funktion zeichnet Quadrate mit der Seitenlänge 50
 def square():
   for count in range(4):
     tina.forward(50)
@@ -115,7 +218,16 @@ def square(size):
 square(100) # Aufruf der Funktion
 ```
 
-## Bedingungen (if-Abfragen)
+```python
+# Funktion mit Rückgabewert
+def add_two_numbers(a, b):
+    result = a + b
+    return result
+
+add_two_numbers(100, 42) # Aufruf der Funktion
+```
+
+### Bedingungen (if-Abfragen)
 
 ```python
 a = 5
@@ -127,14 +239,14 @@ if a < b :
   print("a ist kleiner als b") # wird ausgeführt, da 5 < 9
 ```
 
-## Operatoren
+### Operatoren
 
 | Operator          | Bezeichnung |
 | ------------- | ----- |
 | ```+```, ```-``` | Addition, Subtraktion |
 | ```*```, ```/```, ```%``` | Multiplikation, Subtraktion, Modulo (Rest) |
 
-### Vergleichsoperatoren
+#### Vergleichsoperatoren
 
 | Operator          | Bezeichnung |
 | ------------- | ----- |
@@ -143,7 +255,16 @@ if a < b :
 | ```==``` | Gleichheit |
 | ```!=``` | Ungleichheit |
 
-## Zufallszahlen
+#### Logische Operatoren
+
+| Operator          | Bezeichnung |
+| ------------- | ----- |
+| ```and``` | Logisches "Und". Gibt ```True``` zurück, wenn beide Anweisungen ```True``` sind. |
+| ```or```  | Logisches "Oder". Gibt ```True``` zurück, wenn eine der beiden Anweisungen ```True``` ist.|
+
+## Weitere hilfreiche Python-Module
+
+### random (Zufallszahlen)
 
 ```python
 from random import randint
@@ -154,3 +275,11 @@ obere_grenze = 10
 randint(untere_grenze,obere_grenze)
 ```
 
+### time (Zeitbezogene Funktionen)
+
+```python
+import time
+
+# Ausführung des Programms stoppt für X Sekunden
+time.sleep(0.5) 
+``` 
