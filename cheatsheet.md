@@ -31,6 +31,9 @@ Als Sprache muss dafür "Python (with Turtle)" ausgewählt werden.
     * [while-Schleife](#while-schleife)
 * [Listen](#listen)
 * [Funktionen](#funktionen)
+    * [Funktion ohne Parameter](#funktion-ohne-parameter)
+    * [Funktion mit Parameter](#funktion-mit-parameter)
+    * [Funktion mit Rückgabewert](#funktion-mit-rückgabewert)
 * [Bedingungen (if-Abfragen)](#bedingungen-if-abfragen)
 * [Operatoren](#operatoren)
     * [Vergleichsoperatoren](#vergleichsoperatoren)
@@ -105,7 +108,7 @@ tina.hideturtle()
 ```python
 window = turtle.Screen()
 
-window.setup(width=400, height=400) # Bildschirmgröße
+window.setup(width=400, height=400) # Bildschirmgröße festlegen
 window.tracer(0)  # Bildschirm wird nur noch manuell aktualisiert
 window.bgcolor("#B2FF66")  # Hintergrundfarbe
 window.update()  # Bildschirm aktualisieren
@@ -122,7 +125,7 @@ window.mainloop()
 
 ### Steuerung per Tastatur
 
-Die Codes für die Pfeiltasten sind: "Up", "Down", "Left" und "Right".
+Die Codes für die Pfeiltasten sind: ```Up```, ```Down```, ```Left``` und ```Right```.
 
 ```python
 window = turtle.Screen()
@@ -141,7 +144,7 @@ square_color = "blue" # Texte stehen in Anführungszeichen
 square_size = 10 # Zahlen stehen nicht in Anführungszeichen
 ```
 
-Globale Variablen in Funktionen verändern.
+#### Globale Variablen in Funktionen verändern
 
 ```python
 foo = 0
@@ -189,34 +192,39 @@ del colors[0] # erstes Element ('red') löschen
 
 colors[-1] # auf letztes Element in der Liste zugreifen
 
-# Alle Elemente der Liste vom zweiten bis zum letzen ausgeben
+# Alle Elemente der Liste vom zweiten bis zum letzten ausgeben
 for color_name in colors[1:]:
     print(color_name)
 ```
 
 ### Funktionen
 
+#### Funktion ohne Parameter
+
 ```python
-# Funktion ohne Parameter
 # Die Funktion zeichnet Quadrate mit der Seitenlänge 50
 def square():
-  for count in range(4):
-    tina.forward(50)
-    tina.left(90)
+    for count in range(4):
+        tina.forward(50)
+        tina.left(90)
 
 square() # Aufruf der Funktion
 ```
+
+#### Funktion mit Parameter
 
 ```python
 # Funktion, die Quadrate unterschiedlicher Seitenlänge zeichnet
 # Es wird der Parameter "size" verwendet
 def square(size):
-  for count in range(4):
-    tina.forward(size)
-    tina.left(90)
+    for count in range(4):
+        tina.forward(size)
+        tina.left(90)
 
 square(100) # Aufruf der Funktion
 ```
+
+#### Funktion mit Rückgabewert
 
 ```python
 # Funktion mit Rückgabewert
@@ -234,9 +242,11 @@ a = 5
 b = 9
 
 if a > b :
-  print("a ist größer als b") # wird nicht ausgeführt
-if a < b :
-  print("a ist kleiner als b") # wird ausgeführt, da 5 < 9
+    print("a ist größer als b") # wird nicht ausgeführt
+elif a < b :
+    print("a ist kleiner als b") # wird ausgeführt, da 5 < 9
+else:
+    print("a und b sind genau gleich groß")
 ```
 
 ### Operatoren
@@ -259,8 +269,8 @@ if a < b :
 
 | Operator          | Bezeichnung |
 | ------------- | ----- |
-| ```and``` | Logisches "Und". Gibt ```True``` zurück, wenn beide Anweisungen ```True``` sind. |
-| ```or```  | Logisches "Oder". Gibt ```True``` zurück, wenn eine der beiden Anweisungen ```True``` ist.|
+| ```and``` | Logisches "Und". Gibt ```True``` zurück, wenn *beide* Anweisungen ```True``` sind. |
+| ```or```  | Logisches "Oder". Gibt ```True``` zurück, wenn *eine der beiden* Anweisungen ```True``` ist.|
 
 ## Weitere hilfreiche Python-Module
 
@@ -272,7 +282,7 @@ from random import randint
 untere_grenze = 5
 obere_grenze = 10
 
-randint(untere_grenze,obere_grenze)
+randint(untere_grenze, obere_grenze)
 ```
 
 ### time (Zeitbezogene Funktionen)
@@ -281,5 +291,5 @@ randint(untere_grenze,obere_grenze)
 import time
 
 # Ausführung des Programms stoppt für X Sekunden
-time.sleep(0.5) 
+time.sleep(0.5) # Ausführung stoppt für 0,5 Sekunden
 ``` 
