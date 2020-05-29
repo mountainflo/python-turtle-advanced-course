@@ -1,5 +1,6 @@
 import turtle
 import time
+from random import randint
 
 # for detailed documentation of "Turtle graphics" library see:
 # https://docs.python.org/3/library/turtle.html
@@ -10,13 +11,16 @@ HEAD_DIRECTION_DOWN = 1
 HEAD_DIRECTION_LEFT = 2
 HEAD_DIRECTION_RIGHT = 3
 
-STEP_SIZE = 20  # default size of the turtle is 20x20
-snake_head_direction = HEAD_DIRECTION_RIGHT  # start direction
-
 # settings
-update_delay = 0.15  # decrease number for a more difficult game. The snake will then be faster.
+update_delay = 0.2  # decrease number for a more difficult game. The snake will then be faster.
+snake_color = "#006633"
 
-# initializing screen
+STEP_SIZE = 20  # default size of the turtle is 20x20
+snake_start_direction = HEAD_DIRECTION_RIGHT
+snake_head_direction = snake_start_direction
+
+
+# initialize screen
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 400
 window = turtle.Screen()
@@ -24,11 +28,32 @@ window.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
 window.tracer(0)  # Turns off the screen updates
 window.bgcolor("#B2FF66")
 
-# creating snake
-snake = turtle.Turtle()
-snake.color("#006633")
-snake.shape("square")
-snake.penup()
+# create the game elements
+snake_head = turtle.Turtle()
+snake_head.color(snake_color)
+snake_head.shape("square")
+snake_head.penup()
+
+snake = [snake_head]
+
+fruit = turtle.Turtle()
+fruit.color("red")
+fruit.shape("square")
+fruit.penup()
+
+
+def initialize_board():
+    global snake, snake_head_direction
+
+    # remove all body elements of the previous game
+    for elem in snake[1:]:
+        elem.hideturtle()
+        del elem
+
+    snake = [snake_head]
+    snake_head.setposition(0, 0)
+    snake_head_direction = snake_start_direction
+    place_fruit()
 
 
 def draw_screen_border():
@@ -73,8 +98,10 @@ def go_right():
 
 def move():
     direction = snake_head_direction
-    x = snake.xcor()
-    y = snake.ycor()
+    x = snake_head.xcor()
+    y = snake_head.ycor()
+    x_old = x
+    y_old = y
 
     if direction == HEAD_DIRECTION_RIGHT:
         x += STEP_SIZE
@@ -85,15 +112,51 @@ def move():
     elif direction == HEAD_DIRECTION_DOWN:
         y -= STEP_SIZE
 
-    if check_for_collision(x, y):
+    if check_for_collision_with_boundaries(x, y):
         return False
 
-    snake.setposition(x, y)
+    # check if snake bite itself
+    if check_for_collision_in_list(x, y, snake[1:]):
+        return False
+
+    # check if snake hits a fruit
+    if check_for_collision_in_list(x, y, [fruit]):
+
+        # replace head with new body element
+        snake_body_elem = turtle.Turtle()
+        snake_body_elem.color(snake_color)
+        snake_body_elem.shape("square")
+        snake_body_elem.penup()
+        snake_body_elem.setposition(x_old, y_old)
+
+        snake.insert(1, snake_body_elem)
+
+        # place new random fruit on the board
+        place_fruit()
+    else:
+        # move last element to old head position
+        if len(snake) > 1:
+            snake_tail = snake[-1]
+            del snake[-1]
+            snake_tail.setposition(x_old, y_old)
+            snake.insert(1, snake_tail)
+
+    snake_head.setposition(x, y)
 
     return True
 
 
-def check_for_collision(x, y):
+def check_for_collision_in_list(x, y, turtle_obj_list):
+    collision = False
+
+    for elem in turtle_obj_list:
+        if elem.xcor() == x and elem.ycor() == y:
+            collision = True
+
+    return collision
+
+
+def check_for_collision_with_boundaries(x, y):
     snake_collided = False
 
     if (x >= SCREEN_WIDTH / 2) or (x <= -(SCREEN_WIDTH / 2)):
@@ -105,6 +168,9 @@ def check_for_collision(x, y):
 
 
 def play():
+    initialize_board()
+    print("The game starts. Let´s play ...")
+
     # Main game loop
     play_game = True
     while play_game:
@@ -115,6 +181,28 @@ def play():
         time.sleep(update_delay)
 
     print("GAME OVER!")
+
+
+def place_fruit():
+    global fruit
+
+    placed_fruit = False
+
+    while not placed_fruit:
+
+        border_space = STEP_SIZE
+        half_screen_width = (SCREEN_WIDTH - border_space) / 2
+        half_screen_height = (SCREEN_HEIGHT - border_space) / 2
+
+        width = int(half_screen_width / STEP_SIZE)
+        height = int(half_screen_height / STEP_SIZE)
+
+        x = randint(-width, width) * STEP_SIZE
+        y = randint(-height, height) * STEP_SIZE
+
+        if not check_for_collision_in_list(x, y, snake):
+            placed_fruit = True
+            fruit.setposition(x, y)
 
 
 # draw border
@@ -130,5 +218,7 @@ window.onkey(play, "p")
 
 # initialize screen with turtle
 window.update()
+
+print("Start the game by pressing 'p'")
 
 window.mainloop()  # keep screen open
