@@ -12,7 +12,7 @@ HEAD_DIRECTION_LEFT = 2
 HEAD_DIRECTION_RIGHT = 3
 
 # settings
-update_delay = 0.2  # decrease number for a more difficult game. The snake will then be faster.
+update_delay = 0.13  # decrease number for a more difficult game. The snake will then be faster.
 snake_color = "#006633"
 
 STEP_SIZE = 20  # default size of the turtle is 20x20
@@ -181,6 +181,7 @@ def play():
         time.sleep(update_delay)
 
     print("GAME OVER!")
+    print("Your snake was " + str(len(snake)) + " elements long!")
 
 
 def place_fruit():
