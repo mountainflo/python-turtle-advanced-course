@@ -10,20 +10,20 @@ Für Turtle Graphics musst du auf repl.it ein neues repl erstellen.
 Als Sprache muss dafür "Python (with Turtle)" ausgewählt werden.
 
 
-#### [Turtle Graphics](#turtle-graphics)
+**[Turtle Graphics](#turtle-graphics)**
 
 * [Neue Turtle erstellen](#neue-turtle-erstellen)
 * [Basisbewegungen](#basisbewegungen)
-* [Geschwindigkeit ändern](#geschwindigkeit-ndern)
-* [Stift verändern](#stift-verndern)
+* [Geschwindigkeit ändern](#geschwindigkeit-ändern)
+* [Stift verändern](#stift-verändern)
 * [Texte schreiben](#texte-schreiben)
-* [Position abfragen und verändern](#position-abfragen-und-verndern)
-* [Schildkörte ausblenden](#schildkrte-ausblenden)
+* [Position abfragen und verändern](#position-abfragen-und-verändern)
+* [Schildkörte ausblenden](#schildkröte-ausblenden)
 * [Screen einrichten](#screen-einrichten)
-* [Screen geöffnet halten](#screen-geffnet-halten)
+* [Screen geöffnet halten](#screen-geöffnet-halten)
 * [Steuerung per Tastatur](#steuerung-per-tastatur)
 
-#### [Python](#python)
+**[Python](#python)**
 
 * [Variablen](#variablen)
 * [Schleifen](#schleifen)
@@ -36,7 +36,7 @@ Als Sprache muss dafür "Python (with Turtle)" ausgewählt werden.
     * [Vergleichsoperatoren](#vergleichsoperatoren)
     * [Logische Operatoren](#logische-operatoren)
 
-#### [Weitere hilfreiche Python-Module](#weitere-hilfreiche-python-module)
+**[Weitere hilfreiche Python-Module](#weitere-hilfreiche-python-module)**
 
 * [random (Zufallszahlen)](#random-zufallszahlen)
 * [time (Zeitbezogene Funktionen)](#time-zeitbezogene-funktionen)
