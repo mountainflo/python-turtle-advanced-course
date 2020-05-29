@@ -5,6 +5,10 @@ During the course the kids will code the game "Snake".
 
 The complete course is in *German* and designed for two afternoons of four hours.
 
+![Course Overview](images/course_overview.png)
+
+[complete-course.md](complete-course.md) contains the complete course with all tasks.
+
 [cheatsheet.md](cheatsheet.md) provides help to the kids with the 
 main Turtle Graphics and python commands.
 
