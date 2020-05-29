@@ -169,7 +169,7 @@ def check_for_collision_with_boundaries(x, y):
 
 def play():
     initialize_board()
-    print("The game starts. Let´s play ...")
+    print("The game starts. Let us play ...")
 
     # Main game loop
     play_game = True
