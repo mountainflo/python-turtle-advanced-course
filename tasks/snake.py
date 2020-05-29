@@ -115,7 +115,7 @@ def move():
     if check_for_collision_with_boundaries(x, y):
         return False
 
-    # check if snake bite itself
+    # check if snake bites itself
     if check_for_collision_in_list(x, y, snake[1:]):
         return False
 
@@ -210,10 +210,10 @@ draw_screen_border()
 
 # Keyboard bindings
 window.listen()
-window.onkey(go_up, "w")
-window.onkey(go_down, "s")
-window.onkey(go_left, "a")
-window.onkey(go_right, "d")
+window.onkey(go_up, "Up")  # or use w,a,s,d instead of the arrow keys
+window.onkey(go_down, "Down")
+window.onkey(go_left, "Left")
+window.onkey(go_right, "Right")
 window.onkey(play, "p")
 
 # initialize screen with turtle
