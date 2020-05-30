@@ -26,6 +26,8 @@ Als Sprache muss dafür "Python (with Turtle)" ausgewählt werden.
 **[Python](#python)**
 
 * [Variablen](#variablen)
+    * [Datentypen](#datentypen)
+    * [Globale Variablen in Funktionen verändern](#globale-variablen-in-funktionen-verändern)
 * [Schleifen](#schleifen)
     * [for-Schleife](#for-schleife)
     * [while-Schleife](#while-schleife)
@@ -140,9 +142,19 @@ window.listen() # Ab sofort reagiert das Programm auf Tastatureingaben
 ### Variablen
 
 ```python
-square_color = "blue" # Texte stehen in Anführungszeichen
-square_size = 10 # Zahlen stehen nicht in Anführungszeichen
+square_color = "blue" # Texte (Strings) stehen in Anführungszeichen
+square_size = 10 # Zahlen (Integers) stehen nicht in Anführungszeichen
+str(square_size) # Integers in Strings umwandeln
+int("10.9") # Umwandlung von Kommazahlen in Integerwerte (wird immer abgerundet)
 ```
+
+#### Datentypen
+
+| Datentyp          | Beschreibung | Beispiel |
+| ------------- | ----- | ----- |
+| Integer  | Ganze Zahlen | ```1```, ```1290```, ```-432``` |
+| Floating-Point  | Kommazahlen | ```0.0```, ```-129.21031```, ```0.5``` |
+| String  | Texte (immer in Anführungszeichen) | ```"Hello World"``` |
 
 #### Globale Variablen in Funktionen verändern
 
@@ -178,6 +190,8 @@ while counter < 4: # Schleife wird 4 mal ausgeführt
 
 ```python
 colors = ['red', 'purple', 'blue', 'green']
+
+len(colors) # Länge der Liste, hier 4
 
 # durch alle Element der Liste iterieren
 for color_name in colors:
