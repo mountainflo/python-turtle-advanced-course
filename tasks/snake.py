@@ -120,7 +120,7 @@ def move():
         return False
 
     # check if snake hits a fruit
-    if check_for_collision_in_list(x, y, [fruit]):
+    if check_for_collision_with_turtle_obj(x, y, fruit):
 
         # replace head with new body element
         snake_body_elem = turtle.Turtle()
@@ -154,6 +154,10 @@ def check_for_collision_in_list(x, y, turtle_obj_list):
             collision = True
 
     return collision
+
+
+def check_for_collision_with_turtle_obj(x, y, turtle_obj):
+    return check_for_collision_in_list(x, y, [turtle_obj])
 
 
 def check_for_collision_with_boundaries(x, y):
