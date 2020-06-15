@@ -91,6 +91,9 @@ window.onkey(go_right, "Right")
 
 window.listen()  # listen to keyboard inputs
 
+# initialize screen with turtle
+window.update()
+
 while True:
     move()
 
