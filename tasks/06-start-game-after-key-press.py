@@ -27,6 +27,11 @@ snake_head.color("#006633")
 snake_head.shape("square")
 snake_head.penup()
 
+def initialize_board():
+    global snake, snake_head_direction
+
+    snake_head.setposition(0, 0)
+    snake_head_direction = snake_start_direction
 
 def draw_screen_border():
     pen = turtle.Turtle()
@@ -98,6 +103,7 @@ def check_for_collision_with_boundaries(x, y):
 
 
 def play():
+    initialize_board()
     print("The game starts. Let us play ...")
 
     play_game = True
