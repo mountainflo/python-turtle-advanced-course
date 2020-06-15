@@ -29,7 +29,7 @@ snake_head.penup()
 
 
 def initialize_board():
-    global snake, snake_head_direction
+    global snake_head_direction
 
     snake_head.setposition(0, 0)
     snake_head_direction = snake_start_direction
