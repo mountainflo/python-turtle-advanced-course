@@ -174,8 +174,7 @@ def play():
     # Main game loop
     play_game = True
     while play_game:
-        if not move():
-            play_game = False
+        play_game = move()
 
         window.update()
         time.sleep(update_delay)
