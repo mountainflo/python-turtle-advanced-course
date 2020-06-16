@@ -13,6 +13,7 @@ SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 400
 window = turtle.Screen()
 window.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
+window.bgcolor("#B2FF66")
 
 # initialize turtle
 snake_head = turtle.Turtle()

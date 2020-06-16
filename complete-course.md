@@ -152,3 +152,54 @@ while True:
 
 Die if-Abfragen, in welche Richtung die Schlange bewegt werden soll, werden alle in die Funktion
 ```move()``` ausgelagert.
+
+## 5. Spielfeld-Rahmen zeichnen
+
+*Anmerkung: Spielfeld-Rahmen nur wichtig, wenn das Spiel lokal verwendet wird. Für repl.it ist der Rahmen
+nicht unbedingt notwendig. Aufgabe kann somit auch übersrungen werden.*
+
+Schreibe eine Funktion ```draw_screen_border()```, die einen schwarzen Rahmen um das Spielfeld zeichnet.
+In der Funktion erstellst du dazu eine neue Schildkröte mit ```pen = turtle.Turtle()```.
+Blende die Schildkröte mit ```pen.hideturtle()``` aus, sodass diese beim Zeichnen nicht sichtbar ist.
+
+Die Dicke des Rahmens kannst du z. B. über ```pen.pensize(4)``` auf 4 vergrößern.
+
+Achte darauf, dass du beim Verschieben der Schildkröte vom Mittelpunkt des Spielfelds zum äußeren Rahmen
+des Spielfelds noch keine Linie zeichnest. Mit ```pen.penup()``` und ```pen.pendown()``` kannst du den
+"Stift" der Schildkröte anheben und senken. Somit kannst du die Schildkröte bewegen, auch ohne dabei eine
+Linie zu zeichnen.
+
+Den Aufruf der Funktion ```draw_screen_border()``` platzierst du noch vor den Keyboard-Bindings.
+
+## 6. Spiel beenden, sobald die Schlange den Spielfeldrand berührt
+
+Das Spiel soll nun so erweitert werden, dass beim Berühren des Spielfeldrands das Spiel beendet wird.
+Die Schlange darf sich nur innerhalb des Spielfeldes bewegen.
+
+Erstelle hierzu die Funktion ```check_for_collision_with_boundaries(x, y)```. Die Funktion erhält
+die aktuelle x-Koordinate und y-Koordinate der Schlange. In der Funktion überprüfst du, ob sich die Koordinaten
+**außerhalb des Spielfeldrands oder darauf** befinden.
+Wenn die Schlange außerhalb des Spielfeldes ist, also mit dem Rahmen bereits kollidiert ist, 
+beendest du die Funktion mit ```return True```. Wenn die Schlange noch innerhalb des Spielfeldes ist, gibst
+du  ```False``` zurück.
+
+**Wichtig:** Das Spielfeld ist zwar 400x400 groß, aber das Spielfeld befindet sich mittig auf einem Koordinatensystem.
+Das heißt der linke Rand ist z.b. bei x=-200 und der rechte Rand ist bei x=+200.
+
+Bevor du in der Funktion ```move()``` die neue x-/y-Position der Schlange setzt, rufst du die Funktion
+```check_for_collision_with_boundaries(x, y)``` auf. Falls diese ```True``` liefert, beendest du sofort die
+```move()```-Funktion mit ```return False```.
+Wenn ```check_for_collision_with_boundaries(x, y)``` als Rückgabewert ```False``` liefert, kannst du wie zuvor,
+die neue Position der Schlange setzen. Verlasse anschließend die Funktion mit ```return True```.
+
+Wir verändern nun die ```while```-Schleife. Falls die Schlange den Spielfeldrand berührt, wird die Schleife
+verlassen und das Spiel ist beendet. Der Rückgabewert von ```move()``` gibt uns Auskunft darüber, ob das Spiel
+beendet ist oder ob es noch weiter laufen kann.
+
+```python
+play_game = True
+while play_game:
+    play_game = move()
+    window.update()
+    time.sleep(0.2)
+```
