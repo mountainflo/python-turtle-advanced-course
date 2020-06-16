@@ -96,7 +96,9 @@ tina.write("text",align="center") # align kann “left”, “center” oder rig
 tina.pos() # gibt Vektor mit (x, y) zurück
 tina.xcor() # gibt x Koordinate zurück
 tina.ycor() # gibt y Koordinate zurück
-tina.setposition(0, 0) # x, y Position festlegen
+tina.setx(0) # x Koordinate verändern
+tina.sety(0) # y Koordinate verändern
+tina.setposition(0, 0) # x und y neu setzen
 ```
 
 ### Schildkröte ausblenden
