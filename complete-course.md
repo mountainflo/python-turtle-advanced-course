@@ -292,16 +292,16 @@ eine Frucht getroffen hat. Du kannst dazu in der ```move()```-Funktion die Funkt
 ```True``` zurück gibt, muss eine neue Frucht erstellt werden. D.h. dann musst du die Funktion
 ```place_fruit()``` aufrufen.
 
-## 9. Schlange wächst, sobald sie eine Frucht ist
+## 9. Schlange wächst, sobald sie eine Frucht isst
 
-Bisher passiert unsere Schlange eine Frucht und eine neue Frucht wird an einer anderen freien Position
-auf dem Spielfeld platziert. Wenn die Schlange die Frucht erreicht, wächst sie aber noch nicht.
-In dieser Aufgabe werden die Schlange um eine Element wachsen lassen, sobald der Kopf der Schlange auf ein
+Bisher passiert unsere Schlange eine Frucht und eine neue Frucht wird darauf an einer anderen freien Position
+auf dem Spielfeld platziert. Wenn die Schlange die Frucht erreicht, wächst sie bisher aber noch nicht.
+In dieser Aufgabe werden wir die Schlange um eine Element wachsen lassen, sobald der Kopf der Schlange auf ein
 Feld mit einer Frucht gelangt.
 
 ### 9.1 Liste mit den Elementen der Schlange erstellen
 
-Neben dem Kopf der Schlange ```snake_head``` und er Frucht ```fruit``` erstellen wir nun eine Liste, die alle
+Neben dem Kopf der Schlange ```snake_head``` und der Frucht ```fruit``` erstellen wir nun eine Liste, die alle
 Elemente der Schlange beinhaltet. Die Liste enthält am Anfang nur den Kopf der Schlange. Jedes mal, wenn der
 Schlangenkopf ein Feld mit einer Frucht erreicht, wächst die Liste um ein Element, bzw. die Schlange wird
 ein Element länger.
@@ -314,7 +314,7 @@ Mit ```snake = [snake_head]``` erstellst du eine Liste, die bereits als erstes E
 In der Aufgabe 8.4 haben wir jedes mal, wenn die Schlange über ein Feld mit einer Frucht läuft, eine neue Frucht erstellt.
 Vor dem Aufruf der Funktion ```place_fruit()```, müssen wir nun die Schlange um ein Element verlängern.
 
-Bevor wir dies tun, müssen wir die Position des Schlangenkopfs, bevor dieser um ein Feld verschoben, zwischen speichern.
+Bevor wir dies tun, müssen wir die Position des Schlangenkopfs, bevor dieser um ein Feld verschoben wird, zwischenspeichern.
 Erweitere dazu die ersten Zeilen der ```move()```-Funktion, wie folgt:
 
 ```python
@@ -324,14 +324,14 @@ x_old = x
 y_old = y
 ```
 
-Gehe nun zurück Anstelle, bevor der Aufruf der Funktion ```place_fruit()``` erfolgt.
+Gehe nun zurück an die Anstelle, bevor der Aufruf der Funktion ```place_fruit()``` erfolgt.
 Hier erstellst du ein neues Schlangen-Element mit ```snake_body_elem = turtle.Turtle()```. Achte darauf,
 dem Schlangen-Element, die gleiche Farbe und Form, wie dem Schlangenkopf zu geben.
 Nachdem Erstellen des neuen Schlangen-Elements, setzt du es auf die Position, auf der zuvor noch der Kopf war.
 Die Koordinaten dazu haben wir in ```x_old``` und ```y_old``` gespeichert.
 
-Anschließend musst du das neue Schlangen-Element noch zur Liste hinzufügen. Füge das neue Element direkt
-nach dem Kopf ein. Dies kannst du mit ```snake.insert(1, snake_body_elem)``` machen.
+Anschließend musst du das neue Schlangen-Element noch zur Liste hinzufügen. Füge das neue Element bei Index 1,
+direkt nach dem Schlangenkopf ein. Dies kannst du mit ```snake.insert(1, snake_body_elem)``` machen.
 
 ### 9.3 Schlange trifft keine Frucht und muss verschoben werden
 
@@ -343,7 +343,7 @@ In der Liste ```snake```, verschieben wir das letzte Element noch an die zweite 
 steht danach direkt nach dem Schlangenkopf in der Liste.
 
 Wie du auf das letzte Element der Liste zugreifen und wie du ein Element in der Liste löschen kannst,
-steht im Cheatsheet unter dem Punkten "Listen". Wie du ein Element an eine bestimmte Position in der Liste
+steht im Cheatsheet unter dem Punkt "Listen". Wie du ein Element an einer bestimmten Position in der Liste
 einfügen kannst, hast du bereits in der Teilaufgabe 9.2 gesehen.
 
 ### 9.4 Liste mit den Schlangen-Elementen beim Neustart zurücksetzen
@@ -364,6 +364,46 @@ Der Schlangekopf bleibt somit erhalten.
 
 ## 10. Spiel wird beendet, sobald die Schlange sich selbst beißt
 
-### 10.1 Überpüfen, ob sich die Schlange selbst beißt
+In der letzten Aufgabe wird das Spiel noch um die Spielregel erweitert: Die Schlange darf sich nicht
+selber in den Schwanz beißen. Du musst dazu bei jeder Bewegung des Kopfes prüfen, ob der Kopf beim vorwärts
+bewegen auf einem Schlangenelement landet. Falls die neue Position des Kopfes mit einer Position
+der Listenelemente übereinstimmt, wird das Spiel beendet. GAME OVER.
+
+### 10.1 Überprüfen, ob sich die Schlange selbst beißt
+
+In einer der vorherigen Aufgaben habt ihr bereits die Funktion ```check_for_collision_with_turtle_obj(x, y, turtle_obj)```
+erstellt. Die Funktion überprüft, ob ```x``` und ```y``` auf der selben Position liegt, wie die Koordinaten des ```turtle_obj```.
+
+Mittlerweile besteht die Schlange nicht mehr aus einem Element, sondern aus einer Liste von Elementen. Deshalb
+benötigen wir eine zusätzliche Funktion ```check_for_collision_in_list(x, y, turtle_obj_list)```.
+In dieser Funktion gehen wir die gesamte Liste ```turtle_obj_list``` durch. Bei jedem Element wird geprüft, ob dieses
+mit den Koordinaten ```x``` und ```y``` kollidiert. Falls es zu einer Kollidierung kommt, geben wir ```False``` zurück.
+
+In der ```move```-Funktion platzieren wir anschließend noch den Aufruf der soeben erstellten Funktion.
+Als Liste übergeben wir aber nicht die gesamte Liste, sondern nur die Liste ohne den Kopf.
+Schließlich wollen wir nur prüfen, mit welchem Feld der **Kopf** kollidiert.
+Du kannst dafür beim Aufruf der Funktion ```snake[1:]``` verwenden. Somit wird eine Liste ohne das erste Element erstellt.
+Wenn ```check_for_collision_in_list()``` den Rückgabewert ```True``` liefert (d.h. die Schlange hat sich in den Schwanz
+gebissen), verlassen wir die ```move```-Funktion mit ```False```.
 
 ### 10.2 Schlange darf nicht in die Richtung laufen, aus der sie bereits kommt
+
+Als letzte kleine Änderung, passen wir noch die Funktionen ```go_up()```, ```go_down()```, ```go_right()```
+und ```go_left()``` an. Bisher konnte die Schlange auch wieder zurück in die Richtung, aus der sie gerade kam.
+Wenn die Schlange z.B. nach rechts läuft, kann sie auch auf der Stelle drehen und wieder nach links zurück laufen.
+Problematisch wird dies, wenn die Schlange nicht nur aus dem Kopf besteht, sondern aus mehreren Elementen.
+Die Schlange würde sich sofort selbst beißen und das Spiel würde beendet werden.
+
+Bevor du in den vier oben genannten Funktionen einen neuen Wert für ```snake_head_direction``` setzt,
+kannst du noch überprüfen, aus welcher Richtung die Schlange gerade kommt. Wenn die Schlange mit der
+gerade gedrückten Taste in die entgegengesetzte Richtung zurück läuft, wird der Tastendruck ignoriert
+und kein neuer Wert für ```snake_head_direction``` gesetzt.
+
+### 10.3 Spielen
+
+Du hast es geschafft. Das Snake-Spiel ist fertig.
+
+Falls es dir zu langweilig wird, bzw. zu einfach ist, kannst du die Geschwindigkeit der Schlange verändern.
+Verändere dazu in der Funktion ```play()``` die Zeit, die das Programm "schlafen" soll (```time.sleep()```).
+Setze die Zeit z.B. auf ```0.18``` oder ```0.13```. Wie viele Früchte kannst du jetzt noch essen,
+bevor sich das Spiel beendet und "GAME OVER" anzeigt wird?
