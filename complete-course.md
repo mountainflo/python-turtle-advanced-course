@@ -3,13 +3,13 @@
 **Kursbeschreibung:**
 
 Der Kurs setzt Grundkenntnisse in Python voraus. Mit Grundkenntnissen sind Variablen, 
-Schleifen, Bedingungen und erste einfache Funktionen gemeint. Am Anfang gibt es zur Wiederholung  
+Schleifen, Bedingungen und erste einfache Funktionen gemeint. Am Anfang gibt es zur Wiederholung
 nochmals eine Einführung in Funktionen.
 
 Während des Kurses wird das Spiel *Snake* programmiert. Dabei werden Kenntnisse und die Verwendung 
 von Listen und Funktionen vertieft. Die Teilnehmer sollen sich auch mit dem Aufbau eines Spiels 
 und dessen einzelner Bestandteile auseinandersetzen. Des weiteren sollen die Teilnehmer nach dem 
-Kurs für eine Programme selbstständig Informationen aus Dokumentationen ziehen können.
+Kurs für eigene Programme, selbstständig Informationen aus Dokumentationen ziehen können.
 
 **Voraussetzungen:**
 
@@ -70,7 +70,7 @@ findet ihr im Cheatsheet unter: "Position abfragen und verändern" und "Steuerun
 ## 4. Schlange bewegt sich selbstständig vorwärts
 
 In dieser Aufgabe soll sich die Schlange automatisch alle 0.2 Sekunden nach links oder rechts bewegen.
-Die Taste, die als letztes gedrückt wurde, gibt die Richtung an, in die sich Schlange bewegt.
+Die Taste, die als letztes gedrückt wurde, gibt die Richtung an, in die sich die Schlange bewegt.
 
 Wird zum Beispiel die rechte Pfeiltaste gedrückt, läuft die Schlange nach rechts. 
 Die Schlange läuft nun solange nach rechts weiter, bis die linke Pfeiltaste gedrückt wird.
@@ -221,7 +221,7 @@ In der Funktion setzt du die Schlange wieder auf den Ursprung des Koordinatensys
 wird auch wieder auf die Startrichtung nach rechts gesetzt. Füge abschließend den Aufruf
 der Funktion ```initialize_board()``` direkt als erste Zeile in die Funktion ```play()``` ein.
 
-Wenn du möchtest kannst du noch Hinweise, wie ```print("Starte das Spiel druch Drücken der Taste 'p'")``` 
+Wenn du möchtest, kannst du noch Hinweise, wie ```print("Starte das Spiel durch Drücken der Taste 'p'")``` 
 in dein Programm einfügen. Oder ```print("GAME OVER")```, wenn ein Spiel beendet ist.
 
 ## 8. Früchte zufällig auf dem Spielfeld platzieren
@@ -274,13 +274,13 @@ y = randint(-9, 9) * 20
 Wir überprüfen in der ```while```-Schleife jetzt noch, ob die Position der Frucht auch nicht der Position
 der Schlange entspricht. Wir möchten vermeiden, dass die Frucht und die Schlange genau auf dem selben Feld sind.
 Die Funktion ```check_for_collision_with_turtle_obj(x, y, snake_head)```, aus der vorherigen Teilaufgabe
-nimmt uns dazu bereits den größten Teil der Arbeit ab. Mit einer ```if```-Anweisung musst nur den Rückgabewert
+nimmt uns dazu bereits den größten Teil der Arbeit ab. Mit einer ```if```-Anweisung musst du nur den Rückgabewert
 der Funktion ```check_for_collision_with_turtle_obj()``` überprüfen. Gibt die Funktion ```False``` zurück,
-kannst du Frucht auf die neue Position setzen und anschließend die ```while```-Schleife verlassen.
-Falls die Funktion ```True``` zurückgibt, musst die Schleife nochmal druchlaufen und eine nochmal neue zufällige
-x-/y-Koordinaten generieren.
+kannst du die Frucht auf die neue Position setzen und anschließend die ```while```-Schleife verlassen.
+Falls die Funktion ```True``` zurückgibt, musst die Schleife nochmal druchlaufen werden und nochmal neue zufällige
+x-/y-Koordinaten generiert werden.
 
-*Erweiterung: Wenn du möchtest kannst du die Funktion so umschreiben, dass sie Früchte auf jeder beliebigen
+*Erweiterung: Wenn du möchtest, kannst du die Funktion so umschreiben, dass sie Früchte auf jeder beliebigen
 Spielfeldgröße platzieren kann. Evtl. benötigst du dazu noch den Python-Befehl ```int()```, mit dem du
 Kommazahlen in ganze Zahlen umwandeln kannst.*
 
@@ -350,7 +350,7 @@ einfügen kannst, hast du bereits in der Teilaufgabe 9.2 gesehen.
 
 Mit der Taste "p" kannst du das Spiel neu starten, falls du einmal verloren hast. Beim Neustart enthält
 die Schlange aber immer noch alle Elemente aus dem letzten Durchlauf.
-Du musst deshalb in der Funktion ```ìnitialize_board()``` noch alle Elemente, bis auf den Kopf aus
+Du musst deshalb in der Funktion ```initialize_board()``` noch alle Elemente, bis auf den Kopf aus
 der Liste entfernen. Verwende dazu die nachfolgende ```for```-Schleife:
 
 ```python
@@ -359,8 +359,8 @@ for elem in snake[1:]:
     del elem
 ```
 
-Die Schleife startet nach dem ersten Element in der Liste ```snake[1:]``` und läuft bis zum Ende der Liste.
-Der Schlangekopf bleibt somit erhalten.
+Die Schleife startet nach dem ersten Element in der Liste (```snake[1:]```) und läuft bis zum Ende der Liste.
+Der Schlangenkopf bleibt somit erhalten.
 
 ## 10. Spiel wird beendet, sobald die Schlange sich selbst beißt
 
@@ -386,6 +386,10 @@ Du kannst dafür beim Aufruf der Funktion ```snake[1:]``` verwenden. Somit wird 
 Wenn ```check_for_collision_in_list()``` den Rückgabewert ```True``` liefert (d.h. die Schlange hat sich in den Schwanz
 gebissen), verlassen wir die ```move```-Funktion mit ```False```.
 
+**Erweiterung:** Die zwei Funktionen ```check_for_collision_in_list()``` und ```check_for_collision_with_turtle_obj()```
+sind fast gleich. Es gilt doppelten Code zu vermeiden. Versuche deswegen die beiden Funktionen zu verketten.
+Durch die Verkettung der beiden Funktionen lässt sich doppelter Code vermeiden.
+
 ### 10.2 Schlange darf nicht in die Richtung laufen, aus der sie bereits kommt
 
 Als letzte kleine Änderung, passen wir noch die Funktionen ```go_up()```, ```go_down()```, ```go_right()```
@@ -407,3 +411,16 @@ Falls es dir zu langweilig wird, bzw. zu einfach ist, kannst du die Geschwindigk
 Verändere dazu in der Funktion ```play()``` die Zeit, die das Programm "schlafen" soll (```time.sleep()```).
 Setze die Zeit z.B. auf ```0.18``` oder ```0.13```. Wie viele Früchte kannst du jetzt noch essen,
 bevor sich das Spiel beendet und "GAME OVER" anzeigt wird?
+
+## 11. Erweiterungen
+
+Falls die Teilnehmer schon früher fertig sind können sie das Spiel noch selbstständig erweitern.
+Hierzu können sie eigene Ideen einbringen oder einen der nachfolgenden Vorschläge umsetzen.
+
+Mögliche Erweiterungen:
+* Auswahl unterschiedlicher Schwierigkeitsstufen beim Spielstart. Die Schlange läuft dementsprechend
+schneller oder langsamer. Auswahl kann z.B. über die Konsole erfolgen.
+* Live-Counter auf dem Bildschirm anzeigen, wie viele Früchte bereits gegessen wurden.
+* Timer einblenden, wie lange das Spiel bereits läuft.
+* Eine Mauer als zusätzliches Element einbauen. Nach jeder gegessenen Frucht wird auch eine Mauer auf einem
+zufälligen Feld platziert. Die Mauer darf, wie der Spielfeldrand nicht von der Schlange berührt werden.
