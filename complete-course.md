@@ -61,7 +61,7 @@ der Schlange abfragen. Anschließend verschiebt ihr die Schlange um **20 Einheit
 nach links. Mit ```xcor()``` bekommt ihr die aktuelle x-Position der Schlange und mit ```setx()``` könnt
 ihr die x-Position der Schlange verändern.
 
-Verwendet für diese Aufgabe die Datei [tasks/01-turtle-keyboard-binding-template.py](tasks/01-turtle-keyboard-binding-template.py).
+Verwendet für diese Aufgabe die Datei [03-turtle-keyboard-binding-template.py](tasks/03-keyboard-bindings/03-turtle-keyboard-binding-template.py).
 Ersetzt in dieser Datei die ```TODO```-Kommentare mit den richtigen Python-Befehlen.
 
 *Weitere Details, wie die Steuerung über die Tastatur oder das Abfragen und Verändern der Position funktioniert,
