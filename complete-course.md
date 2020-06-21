@@ -82,7 +82,7 @@ Sobald wir die Position verändert haben, wurde die Schlange auf dem Bildschirm 
 Wir möchten nun den Bildschirm mit der Schlange manuell aktualisieren.
 
 Mit ```window.tracer(0)``` können wir die sofortige automatische Aktualisierung des Bildschrims
-deaktivieren. Füge ```window.tracer(0)``` unterhalb des Befehls ```window = turtle.Screen()``` ein.
+deaktivieren. Füge ```window.tracer(0)``` unterhalb des Befehls ```window.bgcolor("#B2FF66")``` ein.
 
 Probiere aus, was passiert, wenn du jetzt das Programm startest. Die Schlange bewegt sich jetzt nicht mehr.
 Damit sich die Schlange wieder bewegt, müssen wir die Darstellung auf dem Bildschirm manuell aktualisieren.
